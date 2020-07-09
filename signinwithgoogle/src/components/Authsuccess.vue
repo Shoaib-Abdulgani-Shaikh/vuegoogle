@@ -1,9 +1,10 @@
 <template>
   <div>
-    <h1>Success Component</h1>
-    <p>Hello {{ name }} ..!!</p>
-    <p><img : src="photo" /></p>
-    <button @click="logOut">Sign out</button>
+    <h1>Sign in successful</h1>
+    <p>{{ name }}</p>
+    
+    <img  :src="photo" />
+    <button @click="logOut">sign out</button>
   </div>
 </template>
 
@@ -19,10 +20,14 @@ export default {
     };
   },
   created() {
-    this.user = firebase.auth.currentUser;
+    this.user = firebase.auth().currentUser;
     if (this.user) {
       this.name = this.user.displayName;
       this.photo = this.user.photoURL;
+    }
+    else
+    {
+      this.$router.push('/auth').catch(()=>{})
     }
   },
   methods: {
@@ -32,4 +37,3 @@ export default {
   },
 };
 </script>
->
