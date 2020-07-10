@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Sign in page</h1>
+    <h4>Component name : Auth Component</h4>
     <div id="firebaseui-auth-container"></div>
   </div>
 </template>
@@ -16,12 +16,14 @@ export default {
   name: "auth",
   mounted() {
     var uiConfig = {
-      // signInSuccessUrl: "/",
-      signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+      // signInSuccessUrl: "/success",
+      signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID]
     };
     // if already initiated instance exist then get that instance otherwise create new one
-    var ui =firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+    var ui =
+      firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(firebase.auth());
     ui.start("#firebaseui-auth-container", uiConfig);
-  },
+  }
 };
 </script>
