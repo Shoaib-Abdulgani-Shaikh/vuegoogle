@@ -29,12 +29,28 @@ export default {
       name: "",
       photo: "",
       user: {},
-      mydata: "",
+      mydata: ""
     };
   },
   created() {
+    // var googletoken = result.credential.accessToken;
+    firebase
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function(userIdToken) {
+        // Send token to your backend via HTTPS
+        document.userIdToken = userIdToken;
+        console.log("this is token : ", userIdToken);
+        // window.location.href = "/feed";
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     this.user = firebase.auth().currentUser;
+    console.log("user data : ", this.user);
+
     if (this.user) {
+      console.log("this is userdata : ", this.user);
       this.name = this.user.displayName;
       this.photo = this.user.photoURL;
       this.mydata = "";
@@ -52,20 +68,20 @@ export default {
         method: "post",
         url: "https://api.coindesk.com/v1/bpi/currentprice.json",
         data: {
-          firstName: btnid.mydata,
-        },
-      }).then((res) => {
+          firstName: btnid.mydata
+        }
+      }).then(res => {
         console.log(res);
       });
-    },
+    }
   },
   mounted() {
     axios
       .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-      .then((response) => {
+      .then(response => {
         console.log("This is response :", response.data.chartName);
         this.mydata = response.data.chartName;
       });
-  },
+  }
 };
 </script>
