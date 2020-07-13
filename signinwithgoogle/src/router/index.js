@@ -8,16 +8,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: Auth,
+    component: Authsuccess,
   },
   {
     path: "/auth",
     component: Auth,
-  },
-  {
-    path: "/success",
-    component: Authsuccess,
-  },
+  }
 ];
 
 const router = new VueRouter({

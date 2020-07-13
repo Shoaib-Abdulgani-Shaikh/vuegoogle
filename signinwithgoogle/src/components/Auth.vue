@@ -16,7 +16,7 @@ export default {
   name: "auth",
   mounted() {
     var uiConfig = {
-      // signInSuccessUrl: "/success",
+      signInSuccessUrl: "/",
       signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID]
     };
     // if already initiated instance exist then get that instance otherwise create new one

@@ -12,7 +12,7 @@ new Vue({
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.$router.push("/success").catch(()=>{});
+        this.$router.push("/").catch(()=>{});
       } else {
         this.$router.push("/auth").catch(()=>{});
       }

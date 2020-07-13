@@ -33,23 +33,23 @@ export default {
     };
   },
   created() {
-    // var googletoken = result.credential.accessToken;
-    firebase
-      .auth()
-      .currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function(userIdToken) {
-        // Send token to your backend via HTTPS
-        document.userIdToken = userIdToken;
-        console.log("this is token : ", userIdToken);
-        // window.location.href = "/feed";
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
     this.user = firebase.auth().currentUser;
-    console.log("user data : ", this.user);
-
+    console.log("tgis is user : ", this.user);
     if (this.user) {
+      // var googletoken = result.credential.accessToken;
+      firebase
+        .auth()
+        .currentUser.getIdToken(/* forceRefresh */ true)
+        .then(function(userIdToken) {
+          // Send token to your backend via HTTPS
+          document.userIdToken = userIdToken;
+          console.log("this is token : ", userIdToken);
+          // window.location.href = "/feed";
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      console.log("user data : ", this.user);
       console.log("this is userdata : ", this.user);
       this.name = this.user.displayName;
       this.photo = this.user.photoURL;
